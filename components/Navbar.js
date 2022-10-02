@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
+import Logo from './Logo'
+
 
 const Navbar = () => {
     const [nav, setNav] = useState(false);
@@ -30,10 +32,8 @@ const Navbar = () => {
             className='fixed left-0 top-0 w-full z-10 ease-in duration-300'
         >
             <div className='max-w-[1240px] m-auto flex justify-between items-center p-4 text-white'>
-                <Link href='/'>
-                    <h1 style={{ color: `${textColor}` }} className='font-bold text-4xl'>
-                        Captur
-                    </h1>
+                <Link href='/' passHref>
+                    <Logo></Logo>
                 </Link>
                 <ul style={{ color: `${textColor}` }} className='hidden sm:flex'>
                     <li className='p-4'>
