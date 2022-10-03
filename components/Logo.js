@@ -7,6 +7,7 @@ import { motion } from "framer-motion"
 const LogoContainer = tw(motion.a)`
     font-bold
     text-4xl
+    text
 `
 
 

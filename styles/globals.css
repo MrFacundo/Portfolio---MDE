@@ -34,3 +34,19 @@ a {
     background: black;
   }
 }
+
+
+svg {
+  width: 10vw;
+  height: auto;
+  overflow: visible;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+
+@media (max-width: 48em) {
+  svg {
+    width: 20vw;
+  }
+}
