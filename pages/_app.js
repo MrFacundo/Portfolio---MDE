@@ -1,14 +1,23 @@
 import { LocomotiveScrollProvider } from 'react-locomotive-scroll'
-import { useRef } from 'react'
+import { AnimatePresence } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import Navbar from '../components/Navbar'
+import Loader from "../components/Loader";
 
 import '../styles/globals.css'
-// import '../styles/locomotive.css'
 import React from 'react'
 import 'locomotive-scroll/dist/locomotive-scroll.css'
 
 function MyApp({ Component, pageProps }) {
   const containerRef = useRef(null)
+
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoaded(true);
+    }, 3000);
+  }, [])
 
   return (
 
@@ -29,6 +38,9 @@ function MyApp({ Component, pageProps }) {
       }
       containerRef={containerRef}
     >
+      <AnimatePresence>
+        {loaded ? null : <Loader />}
+      </AnimatePresence>
       <main data-scroll-container ref={containerRef}>
         <Navbar />
         <Component {...pageProps} />

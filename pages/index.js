@@ -1,5 +1,11 @@
 import Head from 'next/head'
-import Hero from '../components/Hero'
+import Hero from '../sections/Hero'
+import About from '../sections/Hero'
+import Product from '../sections/Product'
+import Testimonials from '../sections/Testimonials'
+
+
+
 
 export default function Home() {
   return (
@@ -11,10 +17,12 @@ export default function Home() {
       </Head>
 
       <main>
-        <Hero heading='This is the heading' message='This is the message'/>
-        <Hero heading='This is the heading' message='This is the message'/>
-        <Hero heading='This is the heading' message='This is the message'/>
-
+        <Hero heading='This is the heading' message='Heading is the hero text'/>
+        <About heading='This is the About section' message='This is the About text'/>
+        <Product heading='This is the first product heading' message='This is the first product message'/>
+        <Product heading='This is the second product heading' message='This is the second product message'/>
+        <Product heading='This is the third product heading' message='This is the third product message'/>
+        <Testimonials heading='This is the testimonials heading' message='This is the testimonials message'/>
       </main>
 
       <footer>
