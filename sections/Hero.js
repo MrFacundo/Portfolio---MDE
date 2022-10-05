@@ -1,7 +1,8 @@
-import React from 'react'
-import tw from "tailwind-styled-components"
+import React from "react";
+import tw from "tailwind-styled-components";
+import { motion } from "framer-motion";
 
-const AboutContainer = tw.div`
+const HeroContainer = tw.div`
     relative
     flex
     items-center
@@ -11,34 +12,55 @@ const AboutContainer = tw.div`
     bg-fixed
     bg-center
     bg-cover
-    custom-img
-    
-    
-    
-`
+    custom-img    
+`;
 const Overlay = tw.div`
     absolute
     top-0
     left-0
     right-0
     bottom-0
-    bg-black/60
+    bg-black/40
     z-[2]
-`
+`;
 
-const About = ({heading, message}) => {
+const Title = tw(motion.div)`
+    text-white
+    mt-5
+    text-3xl
+    md:text-7xl
+    font-bold
+`;
+
+const Hero = ({ heading, message }) => {
     return (
-        <AboutContainer>
-            <Overlay>
-            </Overlay>
-            <div data-scroll data-scroll-speed="4"   className='p-5 text-white z-[2] ml-5 mt-5'>
-                <h2 className='text-5xl font-bold'>{heading}</h2>
-                <p className='py-5 text-xl'>{message}</p>
-                <button className='px-8 py-2 border'>Button</button>
+        <HeroContainer>
+            <Overlay></Overlay>
+            <div className="z-10">
+                <Title
+                    data-scroll
+                    data-scroll-speed="1"
+                    data-scroll-direction="horizontal"
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 2, delay: 4.5 }}
+                >
+                    {heading}
+                </Title>
+                <Title
+                    data-scroll
+                    data-scroll-speed="-1"
+                    data-scroll-direction="horizontal"
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 2, delay: 4.5 }}
+                    className="pl-10"
+                >
+                    {message}
+                </Title>
             </div>
-        </AboutContainer>
+        </HeroContainer>
+    );
+};
 
-    )
-}
-
-export default About
+export default Hero;

@@ -1,7 +1,7 @@
 import React from 'react'
 import tw from "tailwind-styled-components"
 
-const HeroContainer = tw.div`
+const AboutContainer = tw.div`
     relative
     flex
     items-center
@@ -23,9 +23,9 @@ const Overlay = tw.div`
     z-[2]
 `
 
-const Hero = ({heading, message}) => {
+const About = ({heading, message}) => {
     return (
-        <HeroContainer>
+        <AboutContainer>
             <Overlay>
             </Overlay>
             <div data-scroll data-scroll-speed="4"   className='p-5 text-white z-[2] ml-5 mt-5'>
@@ -33,9 +33,9 @@ const Hero = ({heading, message}) => {
                 <p className='py-5 text-xl'>{message}</p>
                 <button className='px-8 py-2 border'>Button</button>
             </div>
-        </HeroContainer>
+        </AboutContainer>
 
     )
 }
 
-export default Hero
+export default About

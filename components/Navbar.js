@@ -1,13 +1,72 @@
-import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
-import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai';
-import Logo from './Logo'
+import Link from "next/link";
+import tw from "tailwind-styled-components";
 
+import React, { useState, useEffect } from "react";
+import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+import Logo from "./Logo";
+
+const NavbarContainer = tw.div`
+    fixed
+    left-0
+    top-0
+    w-full
+    z-30
+    ease-in
+    duration-300
+`;
+
+const NavbarItemsContainer = tw.nav`
+    max-w-[1480px]
+    m-auto
+    flex
+    justify-between
+    items-center
+    p-4
+    text-white
+`;
+const NavbarMenu = tw.ul`
+    hidden
+    sm:flex
+`;
+
+const NavbarMenuItem = tw.li`
+    p-4
+`;
+
+const HamburgerButton = tw.div`
+    block
+    sm:hidden
+    z-10
+`;
+
+const MobileMenuItem = tw.li`
+    p-4
+    text-4xl
+    hover:text-gray-500
+`;
+
+const MobileMenu = tw.div`
+    sm:hidden
+    absolute
+    top-0
+    right-0
+    bottom-0
+    flex
+    justify-center
+    items-center
+    w-full
+    h-screen
+    bg-black
+    text-white
+    text-center
+    ease-in
+    duration-300
+    `;
 
 const Navbar = () => {
     const [nav, setNav] = useState(false);
-    const [color, setColor] = useState('transparent');
-    const [textColor, setTextColor] = useState('white');
+    const [color, setColor] = useState("transparent");
+    const [textColor, setTextColor] = useState("white");
 
     const handleNav = () => {
         setNav(!nav);
@@ -16,74 +75,71 @@ const Navbar = () => {
     useEffect(() => {
         const changeColor = () => {
             if (window.scrollY >= 10) {
-                setColor('#ffffff');
-                setTextColor('#000000');
+                setColor("#ffffff");
+                setTextColor("#000000");
             } else {
-                setColor('transparent');
-                setTextColor('#ffffff');
+                setColor("transparent");
+                setTextColor("#ffffff");
             }
         };
-        window.addEventListener('scroll', changeColor);
+        window.addEventListener("scroll", changeColor);
     }, []);
 
     return (
-        <div
-            style={{ backgroundColor: `${color}` }}
-            className='fixed left-0 top-0 w-full z-10 ease-in duration-300'
-        >
-            <div className='max-w-[1240px] m-auto flex justify-between items-center p-4 text-white'>
-                <Link href='/' passHref>
+        <NavbarContainer style={{ backgroundColor: `${color}` }}>
+            <NavbarItemsContainer style={{ color: `${textColor}` }}>
+                <Link href="/" passHref>
                     <Logo></Logo>
                 </Link>
-                <ul style={{ color: `${textColor}` }} className='hidden sm:flex'>
-                    <li className='p-4'>
-                        <Link href='/'>Home</Link>
-                    </li>
-                    <li className='p-4'>
-                        <Link href='/#gallery'>Gallery</Link>
-                    </li>
-                    <li className='p-4'>
-                        <Link href='/work'>Work</Link>
-                    </li>
-                    <li className='p-4'>
-                        <Link href='/contact'>Contact</Link>
-                    </li>
-                </ul>
+                <NavbarMenu>
+                    <NavbarMenuItem>
+                        <Link href="/">Home</Link>
+                    </NavbarMenuItem>
+                    <NavbarMenuItem>
+                        <Link href="/#about">Gallery</Link>
+                    </NavbarMenuItem>
+                    <NavbarMenuItem>
+                        <Link href="/#product">Work</Link>
+                    </NavbarMenuItem>
+                    <NavbarMenuItem>
+                        <Link href="/#testimonials">Contact</Link>
+                    </NavbarMenuItem>
+                </NavbarMenu>
 
                 {/* Mobile Button */}
-                <div onClick={handleNav} className='block sm:hidden z-10'>
+                <HamburgerButton onClick={handleNav} className="">
                     {nav ? (
-                        <AiOutlineClose size={20} style={{ color: `${textColor}` }} />
+                        <AiOutlineClose
+                            size={20}
+                            style={{ color: `${textColor}` }}
+                        />
                     ) : (
-                        <AiOutlineMenu size={20} style={{ color: `${textColor}` }} />
+                        <AiOutlineMenu
+                            size={20}
+                            style={{ color: `${textColor}` }}
+                        />
                     )}
-                </div>
+                </HamburgerButton>
                 {/* Mobile Menu */}
-                <div
-                    className={
-                        nav
-                            ? 'sm:hidden absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center w-full h-screen bg-black text-center ease-in duration-300'
-                            : 'sm:hidden absolute top-0 left-[-100%] right-0 bottom-0 flex justify-center items-center w-full h-screen bg-black text-center ease-in duration-300'
-                    }
-                >
+                <MobileMenu className={nav ? "left-0 " : "left-[-100%]"}>
                     <ul>
-                        <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
-                            <Link href='/'>Home</Link>
-                        </li>
-                        <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
-                            <Link href='/#gallery'>Gallery</Link>
-                        </li>
-                        <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
-                            <Link href='/work'>Work</Link>
-                        </li>
-                        <li onClick={handleNav} className='p-4 text-4xl hover:text-gray-500'>
-                            <Link href='/contact'>Contact</Link>
-                        </li>
+                        <MobileMenuItem onClick={handleNav} className="">
+                            <Link href="/">Home</Link>
+                        </MobileMenuItem>
+                        <MobileMenuItem onClick={handleNav}>
+                            <Link href="/#gallery">Gallery</Link>
+                        </MobileMenuItem>
+                        <MobileMenuItem onClick={handleNav}>
+                            <Link href="/work">Work</Link>
+                        </MobileMenuItem>
+                        <MobileMenuItem onClick={handleNav}>
+                            <Link href="/contact">Contact</Link>
+                        </MobileMenuItem>
                     </ul>
-                </div>
-            </div>
-        </div>
+                </MobileMenu>
+            </NavbarItemsContainer>
+        </NavbarContainer>
     );
 };
 
-export default Navbar
+export default Navbar;
