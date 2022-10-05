@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Hero from '../sections/Hero'
-import About from '../sections/Hero'
+import About from '../sections/About'
 import Product from '../sections/Product'
 import Testimonials from '../sections/Testimonials'
 

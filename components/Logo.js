@@ -9,8 +9,6 @@ const LogoContainer = tw(motion.a)`
     text-4xl
     text
 `
-
-
 const logoTransition = {
     duration: 0.5,
     stiffness: 70,
